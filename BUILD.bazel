@@ -1,0 +1,24 @@
+
+cc_library(
+	name = "process",
+	visibility = ["//visibility:public"],
+	includes = [
+		"include/",
+	],
+	hdrs = glob([
+		"include/boost/**/*.hpp",
+		"include/boost/**/*.ipp",
+	]),
+	srcs = [
+	],
+	defines = [
+	],
+	deps = [
+		"@com_github_bazelboost_config//:config",
+		"@com_github_bazelboost_detail//:detail",
+		"@com_github_bazelboost_filesystem//:filesystem",
+		"@com_github_bazelboost_algorithm//:algorithm",
+		"@com_github_bazelboost_move//:move",
+		"@com_github_bazelboost_core//:core"
+	],
+)
