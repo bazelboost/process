@@ -1,0 +1,26 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+_public_hdrs = [
+    "include/boost/*.hpp",
+    "include/boost/process/*.hpp",
+]
+
+cc_library(
+    name = "process_internal",
+    hdrs = glob(["include/boost/**/*.hpp"], exclude = _public_hdrs),
+    deps = [
+        "@boost//filesystem",
+        "@boost//algorithm",
+    ],
+)
+
+cc_library(
+    name = "process",
+    visibility = ["//visibility:public"],
+    includes = ["include"],
+    hdrs = glob(_public_hdrs),
+    deps = [
+        ":process_internal",
+        "@boost//fusion",
+    ],
+)
