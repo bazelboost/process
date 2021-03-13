@@ -11,6 +11,9 @@ cc_library(
     deps = [
         "@boost//filesystem",
         "@boost//algorithm",
+        "@boost//system",
+        "@boost//optional",
+        "@boost//asio",
     ],
 )
 
