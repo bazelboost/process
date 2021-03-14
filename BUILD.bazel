@@ -34,6 +34,7 @@ cc_library(
         "@boost//system",
         "@boost//optional",
         "@boost//asio",
+        "@boost//type_index",
     ],
 )
 
