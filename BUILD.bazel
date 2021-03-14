@@ -1,13 +1,33 @@
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-_public_hdrs = [
-    "include/boost/*.hpp",
-    "include/boost/process/*.hpp",
+_detail_hdrs = [
+    "include/boost/process/detail/*.hpp",
+    "include/boost/process/detail/traits/*.hpp",
+]
+
+_windows_hdrs = [
+    "include/boost/process/detail/windows/*.hpp",
+]
+
+_posix_hdrs = [
+    "include/boost/process/detail/posix/*.hpp",
 ]
 
 cc_library(
-    name = "process_internal",
-    hdrs = glob(["include/boost/**/*.hpp"], exclude = _public_hdrs),
+    name = "process_posix_detail",
+    tags = ["manual"],
+    hdrs = glob(_posix_hdrs),
+)
+
+cc_library(
+    name = "process_windows_detail",
+    target_compatible_with = ["@platforms//os:windows"],
+    hdrs = glob(_windows_hdrs),
+)
+
+cc_library(
+    name = "process_detail",
+    hdrs = glob(_detail_hdrs),
     deps = [
         "@boost//filesystem",
         "@boost//algorithm",
@@ -21,9 +41,12 @@ cc_library(
     name = "process",
     visibility = ["//visibility:public"],
     includes = ["include"],
-    hdrs = glob(_public_hdrs),
+    hdrs = glob(["include/boost/**/*.hpp"], exclude = _detail_hdrs + _windows_hdrs + _posix_hdrs),
     deps = [
-        ":process_internal",
+        ":process_detail",
         "@boost//fusion",
-    ],
+    ] + select({
+        "@platforms//os:windows": [":process_windows_detail"],
+        "//conditions:default": [":process_posix_detail"],
+    }),
 )
