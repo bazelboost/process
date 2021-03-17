@@ -1,0 +1,101 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "args",
+    srcs = ["args.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "async_io",
+    srcs = ["async_io.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "env",
+    srcs = ["env.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "error_handling",
+    srcs = ["error_handling.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "intro",
+    srcs = ["intro.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "io",
+    srcs = ["io.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+# TODO: Not working when this build file was written
+# cc_binary(
+#     name = "posix",
+#     srcs = ["posix.cpp"],
+#     deps = [
+#         "//:process",
+#     ],
+# )
+
+cc_binary(
+    name = "start_dir",
+    srcs = ["start_dir.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "sync_io",
+    srcs = ["sync_io.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "terminate",
+    srcs = ["terminate.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "wait",
+    srcs = ["wait.cpp"],
+    deps = [
+        "//:process",
+    ],
+)
+
+cc_binary(
+    name = "windows",
+    srcs = ["windows.cpp"],
+    target_compatible_with = [
+        "@platforms//os:windows",
+    ],
+    deps = [
+        "//:process",
+    ],
+)

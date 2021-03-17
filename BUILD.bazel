@@ -17,6 +17,9 @@ cc_library(
     name = "process_posix_detail",
     tags = ["manual"],
     hdrs = glob(_posix_hdrs),
+    deps = [
+        "@boost//tokenizer",
+    ],
 )
 
 cc_library(
