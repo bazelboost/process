@@ -26,6 +26,7 @@ cc_library(
     name = "process_windows_detail",
     target_compatible_with = ["@platforms//os:windows"],
     hdrs = glob(_windows_hdrs),
+    linkopts = ["-DEFAULTLIB:shell32"],
 )
 
 cc_library(
