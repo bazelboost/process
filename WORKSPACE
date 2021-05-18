@@ -17,7 +17,7 @@ bazel_skylib_workspace()
 git_repository(
     name = "boost",
     remote = "https://github.com/bazelboost/boost",
-    branch = "master",
+    branch = "main",
 )
 
 load("@boost//:index.bzl", "boost_git_repositories")

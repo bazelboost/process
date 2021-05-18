@@ -18,7 +18,7 @@ cc_library(
     tags = ["manual"],
     hdrs = glob(_posix_hdrs),
     deps = [
-        "@boost//tokenizer",
+        "@boost//libs/tokenizer",
     ],
 )
 
@@ -33,12 +33,12 @@ cc_library(
     name = "process_detail",
     hdrs = glob(_detail_hdrs),
     deps = [
-        "@boost//filesystem",
-        "@boost//algorithm",
-        "@boost//system",
-        "@boost//optional",
-        "@boost//asio",
-        "@boost//type_index",
+        "@boost//libs/filesystem",
+        "@boost//libs/algorithm",
+        "@boost//libs/system",
+        "@boost//libs/optional",
+        "@boost//libs/asio",
+        "@boost//libs/type_index",
     ],
 )
 
@@ -49,7 +49,7 @@ cc_library(
     hdrs = glob(["include/boost/**/*.hpp"], exclude = _detail_hdrs + _windows_hdrs + _posix_hdrs),
     deps = [
         ":process_detail",
-        "@boost//fusion",
+        "@boost//libs/fusion",
     ] + select({
         "@platforms//os:windows": [":process_windows_detail"],
         "//conditions:default": [":process_posix_detail"],
